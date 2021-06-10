@@ -21,6 +21,13 @@ pipeline{
             }
         }
 
-        // Add the "Deploy" stage here
+	stage('Deploy') {
+		steps {
+			sh '''
+				oc project vmusunuru505-greetings
+				oc start-build greeting-service --follow --wait
+			'''
+		}
+	}
     }
 }
